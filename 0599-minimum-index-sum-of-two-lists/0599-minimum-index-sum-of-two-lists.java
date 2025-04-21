@@ -1,6 +1,6 @@
 class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {
-        int count = list1.length + list2.length;
+        int count = Integer.MAX_VALUE;
         Map<String, Integer> map = new HashMap<>();
         for (int i = 0; i < list1.length; i++) {
             for (int j = 0; j < list2.length; j++) {
