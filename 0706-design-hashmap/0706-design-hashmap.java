@@ -9,7 +9,7 @@ class MyHashMap {
         }
     }
 
-    LinkedList<Entry>[] entries = new LinkedList[100];
+    LinkedList<Entry>[] entries = new LinkedList[1000];
 
     
     public void put(int key, int value) {
