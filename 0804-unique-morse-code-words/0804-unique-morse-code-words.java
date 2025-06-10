@@ -31,12 +31,12 @@ class Solution {
             return 1;
 
         for (int i = 0; i < words.length; i++) {
-            String text = "";
+            StringBuffer buffer = new StringBuffer();
             for (int j = 0; j < words[i].length(); j++) {
 
-                text += mp.get(words[i].charAt(j));
+                buffer.append(mp.get(words[i].charAt(j)));
             }
-            words[i] = text;
+            words[i] = buffer.toString();
 
         }
         return (int)Arrays.stream(words)
