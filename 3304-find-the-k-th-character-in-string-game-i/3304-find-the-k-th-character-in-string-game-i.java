@@ -3,8 +3,8 @@ class Solution {
         StringBuffer word = new StringBuffer("a");
 
         while(word.length() <= k){
-            var temp = word;
-            for(var ch : temp.toString().toCharArray()){
+            //var temp = word;
+            for(var ch : word.toString().toCharArray()){
                 var next = (char) (ch + 1);
                 word.append(next);
             }
