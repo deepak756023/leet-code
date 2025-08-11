@@ -1,38 +1,33 @@
-import java.math.BigInteger;
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        BigInteger first = BigInteger.ZERO;
-        BigInteger second = BigInteger.ZERO;
-        int i = 0, j = 0;
+        ListNode dummyHead = new ListNode(0);
+        ListNode curr = dummyHead;
+        int carry = 0;
 
-        while (l1 != null) {
-            first = first.add(BigInteger.valueOf(l1.val).multiply(BigInteger.TEN.pow(i)));
-            i++;
-            l1 = l1.next;
+        while (l1 != null || l2 != null || carry != 0) {
+            int x = (l1 != null) ? l1.val : 0;
+            int y = (l2 != null) ? l2.val : 0;
+
+            int sum = x + y + carry;
+            carry = sum / 10;
+
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
         }
 
-        while (l2 != null) {
-            second = second.add(BigInteger.valueOf(l2.val).multiply(BigInteger.TEN.pow(j)));
-            j++;
-            l2 = l2.next;
-        }
-
-        BigInteger number = first.add(second);
-        ListNode sum = new ListNode(-1);
-        ListNode dummy = sum;
-
-        if (number.equals(BigInteger.ZERO)) {
-            return new ListNode(0);
-        }
-
-        while (number.compareTo(BigInteger.ZERO) > 0) {
-            BigInteger[] divRem = number.divideAndRemainder(BigInteger.TEN);
-            dummy.next = new ListNode(divRem[1].intValue()); // create node
-            dummy = dummy.next;
-            number = divRem[0];
-        }
-
-        return sum.next;
+        return dummyHead.next;
     }
 }
