@@ -10,26 +10,35 @@
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-        if (head == null || head.next == null) return head;
-
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode prev = dummy;
-
-        while (prev.next != null && prev.next.next != null) {
-            ListNode first = prev.next;
-            ListNode second = prev.next.next;
-
-            // Swap
-            first.next = second.next;
-            second.next = first;
-            prev.next = second;
-
-            // Move prev to the end of the swapped pair
-            prev = first;
+        if (head == null || head.next == null) {
+            return head;
         }
 
-        return dummy.next;
+        var newHead = head.next;
+
+        var previous = head;
+        var current = head.next;
+
+        // First swap
+        previous.next = current.next;
+        current.next = previous;
+
+        // Continue swapping
+        while (previous.next != null && previous.next.next != null) {
+            var newP = previous.next;         // first node of next pair
+            var newC = previous.next.next;    // second node of next pair
+
+            // swap
+            previous.next = newC;
+            newP.next = newC.next;
+            newC.next = newP;
+
+            // move forward
+            previous = newP;
+        }
+
+        return newHead;
     }
 }
+
 
