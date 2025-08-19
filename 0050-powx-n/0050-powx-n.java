@@ -1,6 +1,6 @@
 class Solution {
     public double myPow(double x, int n) {
-        long N = n; // convert to long to avoid overflow
+        long N = n;
         if (N < 0) {
             x = 1 / x;
             N = -N;
@@ -11,12 +11,12 @@ class Solution {
     private double myPower(double x, long n) {
         if (n == 0) return 1.0;
 
-        double half = myPower(x, n / 2);
+        //double half = myPower(x, n / 2);
 
         if (n % 2 == 0) {
-            return half * half;
+            return myPower(x, n / 2) * myPower(x, n / 2);
         } else {
-            return half * half * x;
+            return myPower(x, n / 2) * myPower(x, n / 2) * x;
         }
     }
 }
