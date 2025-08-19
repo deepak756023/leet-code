@@ -11,12 +11,12 @@ class Solution {
     private double myPower(double x, long n) {
         if (n == 0) return 1.0;
 
-        //double half = myPower(x, n / 2);
+        double half = myPower(x, n / 2);
 
         if (n % 2 == 0) {
-            return myPower(x, n / 2) * myPower(x, n / 2);
+            return half * half;
         } else {
-            return myPower(x, n / 2) * myPower(x, n / 2) * x;
+            return half * half * x;
         }
     }
 }
