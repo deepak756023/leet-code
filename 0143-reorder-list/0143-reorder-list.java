@@ -10,6 +10,7 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
+        if(head==null || head.next==null || head.next.next ==null) return;
 
         Stack<ListNode> stack = new Stack<>();
         var stackCurrent = head;
