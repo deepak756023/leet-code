@@ -26,10 +26,20 @@
 
 class Solution {
     public int findTheWinner(int n, int k) {
-        int winner = 0; // J(1, k) = 0 (0-indexed)
-        for (int i = 2; i <= n; i++) {
-            winner = (winner + k) % i;
+        Queue<Integer> queue = new ArrayDeque<>();
+        for (int i = 1; i <= n; i++) {
+            queue.add(i);
         }
-        return winner + 1; // convert to 1-indexed
+        
+        while (queue.size() > 1) {
+            // Rotate (k-1) times efficiently
+            for (int i = 1; i < k; i++) {
+                queue.add(queue.remove()); // move front to back
+            }
+            queue.remove(); // eliminate the k-th person
+        }
+        
+        return queue.peek(); // last winner
     }
 }
+
