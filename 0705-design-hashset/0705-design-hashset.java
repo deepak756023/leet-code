@@ -6,7 +6,7 @@ class MyHashSet {
             this.key = key;
         }
     }
-    LinkedList<Entry>[] entries = new LinkedList[100];
+    LinkedList<Entry>[] entries = new LinkedList[1000];
     
     public void add(int key) {
         int index = hash(key);
