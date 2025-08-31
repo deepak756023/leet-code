@@ -25,6 +25,7 @@ class Solution {
         }
         if(list1==null)
             return list2;
+            
         return list1;
         
 
