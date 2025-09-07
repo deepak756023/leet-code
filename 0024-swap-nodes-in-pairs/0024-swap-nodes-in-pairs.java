@@ -11,35 +11,31 @@
 class Solution {
 
     public ListNode swapPairs(ListNode head) {
-       if(head == null || head.next == null)
-       return head;
+        if (head == null || head.next == null)
+            return head;
 
         var dummyHead = head.next;
-        var last = new ListNode(0);
+        var lastReference = new ListNode(0);
 
         var previous = head;
         var current = previous.next;
 
-        while(current != null){
+        while (current != null) {
             var temp = current.next;
-            last.next = current;
+            lastReference.next = current;
             current.next = previous;
             previous.next = temp;
 
-            last = previous;
+            lastReference = previous;
             previous = temp;
 
-            if(previous == null)
-            break;
+            if (previous == null)
+                break;
 
             current = previous.next;
 
-            
-            
         }
         return dummyHead;
-      
+
     }
 }
-
-
