@@ -1,24 +1,16 @@
-
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        Set<ListNode> nodes = new HashSet<>();
+        Set<ListNode> seen = new HashSet<>();
+        ListNode curr = head;
 
-        if (head == null || head.next == null)
-            return null;
-
-        var slow = head;
-        var fast = head;
-
-        while (fast.next != null && fast.next.next != null) {
-            nodes.add(slow);
-            slow = slow.next;
-            fast = fast.next.next;
-            if (nodes.contains(fast)) {
-                return fast;
+        while (curr != null) {
+            if (seen.contains(curr)) {
+                return curr;  // cycle entry
             }
+            seen.add(curr);
+            curr = curr.next;
         }
 
-        return null;
-
+        return null;  // no cycle
     }
 }
