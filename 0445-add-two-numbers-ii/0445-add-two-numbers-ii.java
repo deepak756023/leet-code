@@ -2,17 +2,24 @@ class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         Stack<Integer> stack1 = new Stack<>();
         Stack<Integer> stack2 = new Stack<>();
+        var curr1 = l1;
+        var curr2 = l2;
 
-        // Push all values from l1
-        while (l1 != null) {
-            stack1.push(l1.val);
-            l1 = l1.next;
-        }
-
-        // Push all values from l2
-        while (l2 != null) {
-            stack2.push(l2.val);
-            l2 = l2.next;
+        while (curr1 != null || curr2 != null) {
+            if (curr1 == null) {
+                stack2.push(curr2.val);
+                curr2 = curr2.next;
+                continue;
+            }
+            if (curr2 == null) {
+                stack1.push(curr1.val);
+                curr1 = curr1.next;
+                continue;
+            }
+            stack1.push(curr1.val);
+            stack2.push(curr2.val);
+            curr1 = curr1.next;
+            curr2 = curr2.next;
         }
 
         int carry = 0;
