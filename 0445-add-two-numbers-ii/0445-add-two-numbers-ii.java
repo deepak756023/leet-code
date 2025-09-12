@@ -24,8 +24,6 @@ class Solution {
 
         int carry = 0;
         ListNode head = null;
-
-        // Add numbers from the stacks
         while (!stack1.isEmpty() || !stack2.isEmpty() || carry != 0) {
             int x = stack1.isEmpty() ? 0 : stack1.pop();
             int y = stack2.isEmpty() ? 0 : stack2.pop();
