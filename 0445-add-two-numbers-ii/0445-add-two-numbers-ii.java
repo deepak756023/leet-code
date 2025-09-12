@@ -26,7 +26,7 @@ class Solution {
         ListNode dummy = new ListNode(0);
         var first = dummy.next;
 
-        while(!stack1.isEmpty() || !stack2.isEmpty() || carry != 0){
+        while (!stack1.isEmpty() || !stack2.isEmpty() || carry != 0) {
             int x = stack1.isEmpty() ? 0 : stack1.pop();
             int y = stack2.isEmpty() ? 0 : stack2.pop();
             int sum = x + y + carry;
@@ -37,9 +37,7 @@ class Solution {
 
             first = dummy.next;
 
-
             carry = sum / 10;
-
 
         }
 
