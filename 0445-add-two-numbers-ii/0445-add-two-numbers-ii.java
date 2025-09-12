@@ -1,9 +1,11 @@
+
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        Stack<Integer> stack1 = new Stack<>();
-        Stack<Integer> stack2 = new Stack<>();
         var curr1 = l1;
         var curr2 = l2;
+        Stack<Integer> stack1 = new Stack<>();
+        Stack<Integer> stack2 = new Stack<>();
+        int carry = 0;
 
         while (curr1 != null || curr2 != null) {
             if (curr1 == null) {
@@ -21,21 +23,25 @@ class Solution {
             curr1 = curr1.next;
             curr2 = curr2.next;
         }
+        ListNode dummy = new ListNode(0);
+        var first = dummy.next;
 
-        int carry = 0;
-        ListNode head = null;
         while (!stack1.isEmpty() || !stack2.isEmpty() || carry != 0) {
             int x = stack1.isEmpty() ? 0 : stack1.pop();
             int y = stack2.isEmpty() ? 0 : stack2.pop();
             int sum = x + y + carry;
 
-            ListNode curr = new ListNode(sum % 10);
-            curr.next = head;
-            head = curr;
+            var curr = new ListNode(sum % 10);
+            dummy.next = curr;
+            curr.next = first;
+
+            first = dummy.next;
 
             carry = sum / 10;
+
         }
 
-        return head;
+        return dummy.next;
+
     }
 }
