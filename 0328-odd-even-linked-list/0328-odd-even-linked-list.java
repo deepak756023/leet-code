@@ -5,18 +5,18 @@ class Solution {
 
         var prev = head;
         var curr = head.next;
-        var prevOfCurr = head;   // <-- new pointer to track node before curr
+        var prevOfCurr = head;
         int count = 1;
 
         while (curr != null) {
             if (count % 2 == 0) {
-                var temp1 = prev.next;   // node after prev
-                var temp2 = curr.next;   // node after curr
+                var temp1 = prev.next;
+                var temp2 = curr.next;   
 
-                prev.next = curr;        // link prev → curr
-                curr.next = temp1;       // link curr → old next
+                prev.next = curr;        
+                curr.next = temp1;      
 
-                prevOfCurr.next = temp2; // reconnect previous-of-curr → temp2
+                prevOfCurr.next = temp2; 
 
                 prev = prev.next;
                 curr = temp2;
@@ -24,7 +24,7 @@ class Solution {
                 continue;
             }
 
-            // advance normally
+           
             prevOfCurr = curr;
             curr = curr.next;
             count++;
