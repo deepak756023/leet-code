@@ -1,130 +1,107 @@
 class MyLinkedList {
-    int val;
-    MyLinkedList next;
+    private class Node {
+        int data;
+        Node next;
+
+        Node(int val) {
+            data = val;
+            next = null;
+        }
+    }
+
+    private Node head;
+    private Node tail;
+    private int size;
 
     public MyLinkedList() {
-
+        head = tail = null;
+        size = 0;
     }
-
-    public MyLinkedList(int val) {
-        this.val = val;
-    }
-
-    public MyLinkedList(int val, MyLinkedList next) {
-        this.val = val;
-        this.next = next;
-
-    }
-
-    private MyLinkedList head;
 
     public int get(int index) {
-        if (index < 0) {
+        if (index < 0 || index >= size) {
             return -1;
         }
-
-        int i = 0;
-        var curr = head;
-
-        while (curr != null && i < index) {
-            curr = curr.next;
-            i++;
+        if (index == 0) {
+            return head.data;
         }
-        if (curr == null) {
-            return -1;
+        if (index == size - 1) {
+            return tail.data;
         }
-
-        return curr.val;
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp.data;
     }
 
     public void addAtHead(int val) {
-        var curr = new MyLinkedList(val);
-        if (head == null) {
-            head = curr;
-            head.next = null;
+        Node newNode = new Node(val);
+        if (size == 0) {
+            head = tail = newNode;
         } else {
-            curr.next = head;
-            head = curr;
-
+            newNode.next = head;
+            head = newNode;
         }
-
+        size++;
     }
 
     public void addAtTail(int val) {
-        var curr = new MyLinkedList(val);
-        if (head == null) {
-            head = curr;
+        Node newNode = new Node(val);
+        if (size == 0) {
+            head = tail = newNode;
         } else {
-            var temp = head;
-            while (temp.next != null) {
-                temp = temp.next;
-            }
-            temp.next = curr;
-            curr.next = null;
+            tail.next = newNode;
+            tail = newNode;
         }
-
+        size++;
     }
 
     public void addAtIndex(int index, int val) {
-        if (index < 0) {
+        if (index < 0 || index > size) {
             return;
         }
-
-        var curr = new MyLinkedList(val);
-
         if (index == 0) {
-            curr.next = head;
-            head = curr;
+            addAtHead(val);
             return;
         }
-
-        var prev = head;
-        int count = 0;
-
-        while (prev != null && count < index - 1) {
-            prev = prev.next;
-            count++;
-        }
-
-        if (prev == null) {
+        if (index == size) {
+            addAtTail(val);
             return;
         }
-
-        var next = prev.next;
-        prev.next = curr;
-        curr.next = next;
+        Node newNode = new Node(val);
+        Node temp = head;
+        for (int i = 0; i < index - 1; i++) {
+            temp = temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+        size++;
     }
 
     public void deleteAtIndex(int index) {
-        if (head == null) {
+        if (index < 0 || index >= size) {
             return;
         }
         if (index == 0) {
-            var temp = head.next;
-            head.next = null;
-            head = temp;
-            return;
+            Node temp = head;
+            head = head.next;
+            temp.next = null; // help GC
+            if (size == 1) tail = null;
+        } else {
+            Node temp = head;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            Node remove = temp.next;
+            temp.next = temp.next.next;
+            remove.next = null; // help GC
+            if (index == size - 1) tail = temp;
         }
-
-        var prev = head;
-        int count = 0;
-
-        //// Traverse to (index - 1)
-        while (prev != null && count < index - 1) {
-            prev = prev.next;
-            count++;
-        }
-
-        if (prev == null || prev.next == null) {
-            return;
-        }
-
-        var toDelete = prev.next;
-        prev.next = toDelete.next;
-        toDelete.next = null;
+        size--;
     }
-
 }
+
 
 /**
  * Your MyLinkedList object will be instantiated and called as such:
