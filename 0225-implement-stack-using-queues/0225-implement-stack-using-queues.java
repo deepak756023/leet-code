@@ -1,18 +1,19 @@
 class MyStack {
     Queue<Integer> queue1 = new ArrayDeque<>();
     Queue<Integer> queue2 = new ArrayDeque<>();
+    private int top;
 
     public MyStack() {
 
     }
 
     public void push(int x) {
+        top = x;
         queue1.add(x);
 
     }
 
     public int pop() {
-        int top = 0;
         while (!queue1.isEmpty()) {
              top = queue1.remove();
             if (!queue1.isEmpty())
@@ -27,7 +28,6 @@ class MyStack {
     }
 
     public int top() {
-        int top = 0;
         while (!queue1.isEmpty()) {
              top = queue1.remove();
             queue2.add(top);
