@@ -26,8 +26,8 @@ class Solution {
             p2 = p2.next;
         }
 
-        // 4. (Optional) Restore list to original form
-        reverseList(secondHalf);
+        // // 4. (Optional) Restore list to original form
+        // reverseList(secondHalf);
 
         return isPalin;
     }
