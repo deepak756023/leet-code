@@ -1,31 +1,45 @@
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null)
+        if (head == null || head.next == null) 
             return true;
-        var slow = head;
-        var fast = head;
-        while (fast.next != null && fast.next.next != null) {
+
+        // 1. Find middle of the list (slow will stop at middle)
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        var newHead = new ListNode(slow.next.val);
+        // 2. Reverse the second half of the list
+        ListNode secondHalf = reverseList(slow);
 
-        var current = slow.next.next;
-        while (current != null) {
-            ListNode NL = new ListNode(current.val);
-            NL.next = newHead;
-            newHead = NL;
-            current = current.next;
-
-        }
-        while (newHead != null) {
-            if (newHead.val != head.val) {
-                return false;
+        // 3. Compare first and second halves
+        ListNode p1 = head;
+        ListNode p2 = secondHalf;
+        boolean isPalin = true;
+        while (p2 != null) {
+            if (p1.val != p2.val) {
+                isPalin = false;
+                break;
             }
-            newHead = newHead.next;
-            head = head.next;
+            p1 = p1.next;
+            p2 = p2.next;
         }
-        return true;
+
+        // 4. (Optional) Restore list to original form
+        reverseList(secondHalf);
+
+        return isPalin;
+    }
+
+    private ListNode reverseList(ListNode head) {
+        ListNode prev = null, curr = head;
+        while (curr != null) {
+            ListNode nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        return prev;
     }
 }
