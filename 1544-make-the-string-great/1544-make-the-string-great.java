@@ -17,11 +17,9 @@ class Solution {
              stack.push(ch);
         }
 
-        StringBuilder good = new StringBuilder();
-        while(!stack.empty()){
-            good.insert(0, stack.pop());
-        }
-
-        return good.toString();
+        StringBuilder ans = new StringBuilder();
+        for (char currChar : stack) 
+            ans.append(currChar);
+        return ans.toString();
     }
 }
