@@ -14,9 +14,9 @@ class Solution {
 
         StringBuilder distinct = new StringBuilder();
         while (!stack.empty()) {
-            distinct.insert(0, stack.pop());
+            distinct.append(stack.pop());
         }
-        return distinct.toString();
+        return distinct.reverse().toString();
 
     }
 }
