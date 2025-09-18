@@ -1,5 +1,9 @@
 class Solution {
     public String makeGood(String s) {
+        if (s.length() < 2) {
+            return s;
+        }
+        
         Stack<Character> stack = new Stack<>();
 
         for(var ch : s.toCharArray()){
