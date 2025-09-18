@@ -3,20 +3,16 @@ class Solution {
         if (s.length() < 2) {
             return s;
         }
-
+        
         Stack<Character> stack = new Stack<>();
-
-        for(var ch : s.toCharArray()){
-            if(!stack.empty()){
-                if(Math.abs(ch - (stack.peek())) == 32){
-                    stack.pop();
-                    continue;
-                }
-               
+        for (char currChar : s.toCharArray()) {
+            if (!stack.isEmpty() && Math.abs(stack.peek() - currChar) == 32) {
+                stack.pop();
+            } else {
+                stack.push(currChar);
             }
-             stack.push(ch);
         }
-
+        
         StringBuilder ans = new StringBuilder();
         for (char currChar : stack) 
             ans.append(currChar);
