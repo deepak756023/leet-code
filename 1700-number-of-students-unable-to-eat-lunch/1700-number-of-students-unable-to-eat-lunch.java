@@ -8,18 +8,15 @@ class Solution {
             queue.add(students[i]);
         }
 
-        while (!stack.empty()) {
-            if (!queue.contains(stack.peek())) {
-                return stack.size();
-            }
-            int topStudent = queue.remove();
-            int topSandWich = stack.pop();
-            if (topStudent != topSandWich) {
-                queue.add(topStudent);
-                stack.push(topSandWich);
+        while(stack.size()>0 && queue.contains(stack.peek())){
+            int student = queue.poll();
+            if(student == stack.peek()){
+                stack.pop();
+            } else {
+                queue.add(student);
             }
         }
-        return 0;
+        return queue.size();
 
     }
 }
