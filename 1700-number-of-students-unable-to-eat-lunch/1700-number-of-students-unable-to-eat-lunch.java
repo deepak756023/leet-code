@@ -9,7 +9,7 @@ class Solution {
         }
 
         while (!stack.empty()) {
-            if (isAllNotWantTop(stack.peek(), queue)) {
+            if (!queue.contains(stack.peek())) {
                 return stack.size();
             }
             int topStudent = queue.remove();
@@ -21,13 +21,5 @@ class Solution {
         }
         return 0;
 
-    }
-
-    public boolean isAllNotWantTop(int top, Queue<Integer> queue){
-        boolean allSame = queue.stream().distinct().count() == 1;
-        if(top != queue.peek() && allSame){
-            return true;
-        }
-        return false;
     }
 }
