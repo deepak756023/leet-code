@@ -1,7 +1,7 @@
 class Solution {
     public int calculate(String s) {
         Stack<Integer> stack = new Stack<>();
-        char sign = '+';  // default operator
+        char sign = '+';
         int num = 0;
 
         for (int i = 0; i < s.length(); i++) {
