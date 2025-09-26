@@ -1,24 +1,33 @@
 class Solution {
     public int[] nextLargerNodes(ListNode head) {
-        //convert linked list to array for easy index access
-        List<Integer> values = new ArrayList<>();
+        // Step 1: Find length
+        int length = 0;
         ListNode curr = head;
         while (curr != null) {
-            values.add(curr.val);
+            length++;
             curr = curr.next;
         }
 
-        int n = values.size();
-        int[] result = new int[n];
-        Stack<Integer> stack = new Stack<>();
+        // Step 2: Copy values into an array
+        int[] arr = new int[length];
+        curr = head;
+        for (int i = 0; i < length; i++) {
+            arr[i] = curr.val;
+            curr = curr.next;
+        }
 
-        for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty() && values.get(stack.peek()) < values.get(i)) {
-                result[stack.pop()] = values.get(i);
+        // Step 3: Apply NGE algorithm
+        int[] result = new int[length];
+        Stack<Integer> stack = new Stack<>(); // stores indices
+
+        for (int i = 0; i < length; i++) {
+            while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
+                result[stack.pop()] = arr[i];
             }
             stack.push(i);
         }
 
+        // Remaining indices automatically have result = 0
         return result;
     }
 }
