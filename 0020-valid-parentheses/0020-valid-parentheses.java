@@ -3,6 +3,8 @@ class Solution {
         Stack<Character> stack = new Stack<>();
         char[] chars = s.toCharArray();
 
+        
+
         for (var ch : chars) {
             if (ch == '(' || ch == '{' || ch == '[') {
                 stack.push(ch);
@@ -12,10 +14,10 @@ class Solution {
                 if (stack.empty())
                     return false;
                 char top = stack.pop();
-                if (ch == ')' && top == '(' || ch == '}' && top == '{' || ch == ']' && top == '[') {
-
-                } else {
+                if (!(ch == ')' && top == '(' || ch == '}'
+                       && top == '{' || ch == ']' && top == '[')) {
                     return false;
+
                 }
             }
 
