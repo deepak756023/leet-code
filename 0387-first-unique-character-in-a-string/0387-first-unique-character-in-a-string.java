@@ -1,7 +1,7 @@
 class Solution {
     public int firstUniqChar(String s) {
 
-        HashMap<Character, Integer> map = new HashMap<>();
+        Map<Character, Integer> map = new HashMap<>();
         for(var ch : s.toCharArray()){
             if(map.containsKey(ch)){
                 map.put(ch, map.get(ch) + 1);
