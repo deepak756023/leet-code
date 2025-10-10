@@ -10,8 +10,8 @@ class Solution {
         }
 
         while (!radiant.isEmpty() && !dire.isEmpty()) {
-            int r = radiant.poll();
-            int d = dire.poll();
+            int r = radiant.remove();
+            int d = dire.remove();
             if (r < d) radiant.add(r + n);
             else dire.add(d + n);
         }
