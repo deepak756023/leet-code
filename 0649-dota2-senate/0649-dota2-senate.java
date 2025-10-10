@@ -12,8 +12,8 @@ class Solution {
         while (!radiant.isEmpty() && !dire.isEmpty()) {
             int r = radiant.poll();
             int d = dire.poll();
-            if (r < d) radiant.offer(r + n);
-            else dire.offer(d + n);
+            if (r < d) radiant.add(r + n);
+            else dire.add(d + n);
         }
 
         return radiant.isEmpty() ? "Dire" : "Radiant";
