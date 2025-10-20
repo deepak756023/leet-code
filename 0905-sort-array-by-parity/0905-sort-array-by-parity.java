@@ -5,14 +5,19 @@ class Solution {
 
         while (right < nums.length) {
             if (nums[right] % 2 == 0) {
-                int temp = nums[left];
-                nums[left] = nums[right];
-                nums[right] = temp;
-                left++;
+                if (left != right) {
+                    int temp = nums[left];
+                    nums[left] = nums[right];
+                    nums[right] = temp;
+                    left++;
+                } else {
+                    left++;
+                }
+
             }
             right++;
         }
 
-        return nums;        
+        return nums;
     }
 }
