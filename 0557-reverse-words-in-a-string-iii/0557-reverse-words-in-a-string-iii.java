@@ -1,6 +1,5 @@
 class Solution {
     public String reverseWords(String s) {
-        //String op = "";
         StringBuilder rev = new StringBuilder();
         int start = 0;
         int next = 0;
@@ -21,16 +20,17 @@ class Solution {
     }
 
     private String reverse(String word) {
-        char[] chars = word.toCharArray();
-        int start = 0;
-        int end = chars.length - 1;
-        while (start < end) {
-            char temp = chars[start];
-            chars[start] = chars[end];
-            chars[end] = temp;
-            start++;
-            end--;
-        }
-        return new String(chars);
+        // char[] chars = word.toCharArray();
+        // int start = 0;
+        // int end = chars.length - 1;
+        // while (start < end) {
+        //     char temp = chars[start];
+        //     chars[start] = chars[end];
+        //     chars[end] = temp;
+        //     start++;
+        //     end--;
+        // }
+        // return new String(chars);
+        return new StringBuilder(word).reverse().toString();
     }
 }
