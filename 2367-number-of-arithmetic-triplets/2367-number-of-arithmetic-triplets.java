@@ -7,12 +7,10 @@ class Solution {
         }
 
         for(int i = 0; i < nums.length; i++){
-            int temp1 = nums[i] + diff;
-            if(!set.contains(temp1)){
+            if(!set.contains(nums[i] + diff)){
                 continue;
             }else{
-                int temp2 = temp1 + diff;
-                if(!set.contains(temp2)){
+                if(!set.contains(nums[i] + 2 * diff)){
                     continue;
                 }else{
                     set.remove(nums[i]);
