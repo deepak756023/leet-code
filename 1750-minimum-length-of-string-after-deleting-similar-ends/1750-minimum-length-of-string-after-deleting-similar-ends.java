@@ -1,32 +1,24 @@
 class Solution {
     public int minimumLength(String s) {
-
         int start = 0;
         int end = s.length() - 1;
 
-        while(start < end){
-            if(s.charAt(start) == s.charAt(end)){
-                if(start == end - 1) return 0;
-                if(s.charAt(start) == s.charAt(start + 1)){
-                    start++;
-                    continue;
-                }
-                if(s.charAt(end) == s.charAt(end - 1)){
-                    end--;
-                    continue;
-                }
+        // Continue trimming from both sides while the characters match
+        while (start < end && s.charAt(start) == s.charAt(end)) {
+            char ch = s.charAt(start);
+
+            // Move start pointer forward while the same char continues
+            while (start <= end && s.charAt(start) == ch) {
                 start++;
+            }
+
+            // Move end pointer backward while the same char continues
+            while (end >= start && s.charAt(end) == ch) {
                 end--;
-                if(start == end) return 1;
-                
-            }else{
-                return end - start + 1;
             }
         }
 
-        
-
-        return 1;
-        
+        // Remaining substring length
+        return end - start + 1;
     }
 }
