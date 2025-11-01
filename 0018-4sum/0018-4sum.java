@@ -3,7 +3,6 @@ class Solution {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
         int len = nums.length;
-        long res = target;
 
         for (int p = 0; p < len - 3; p++) {
             if (p > 0 && nums[p] == nums[p - 1])
@@ -17,9 +16,9 @@ class Solution {
                 int s = len - 1;
                 while(r < s){
                     long sum = (long)nums[p] + nums[q] + nums[r] + nums[s];
-                    if(sum < res){
+                    if(sum < target){
                         r++;
-                    }else if(sum > res){
+                    }else if(sum > target){
                         s--;
                     }else{
                         result.add(List.of(nums[p] , nums[q] , nums[r] , nums[s]));
