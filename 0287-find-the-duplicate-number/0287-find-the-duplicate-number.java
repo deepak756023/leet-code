@@ -5,14 +5,17 @@ class Solution {
 
         for(var num : nums){
             int val = map.containsKey(num) ? map.get(num) + 1 : 1;
+            if(val > 1){
+                return num;
+            }
             map.put(num, val);
         }
 
-        for(var key : map.keySet()){
-            if(map.get(key) > 1){
-                return key;
-            }
-        }
+        // for(var key : map.keySet()){
+        //     if(map.get(key) > 1){
+        //         return key;
+        //     }
+        // }
 
         return -1;
         
