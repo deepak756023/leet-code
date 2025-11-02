@@ -1,23 +1,18 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-        HashMap<Integer, Integer> map = new HashMap<>();
         int len = nums.length;
-
-        for(var num : nums){
-            int val = map.containsKey(num) ? map.get(num) + 1 : 1;
-            if(val > 1){
-                return num;
+        Arrays.sort(nums);
+        int slow = 0;
+        int fast = 1;
+        while(fast < len){
+            if(nums[slow] == nums[fast]){
+                return nums[slow];
             }
-            map.put(num, val);
+            slow++;
+            fast++;
         }
-
-        // for(var key : map.keySet()){
-        //     if(map.get(key) > 1){
-        //         return key;
-        //     }
-        // }
-
         return -1;
+       
         
     }
 }
